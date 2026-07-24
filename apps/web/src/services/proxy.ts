@@ -1,7 +1,8 @@
 import { RequestConfig, ProxyResponse } from '@apilot/shared';
+import { apiUrl } from '../utils/apiUrl';
 
 export async function sendProxyRequest(config: RequestConfig): Promise<ProxyResponse> {
-  const response = await fetch('/api/proxy', {
+  const response = await fetch(apiUrl('/api/proxy'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(config),

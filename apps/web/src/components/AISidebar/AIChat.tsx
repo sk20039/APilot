@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AIContext } from './AISidebar';
+import { apiUrl } from '../../utils/apiUrl';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -35,7 +36,7 @@ export function AIChat({ context }: Props) {
     setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
 
     try {
-      const response = await fetch('/api/ai/chat', {
+      const response = await fetch(apiUrl('/api/ai/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages, context }),

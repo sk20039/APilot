@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: apilot-api
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm --filter @apilot/shared build && pnpm --filter @apilot/api build
+    startCommand: node apps/api/dist/index.js
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: WEB_ORIGIN
+        value: https://apilot.netlify.app
+      - key: ANTHROPIC_API_KEY
+        sync: false

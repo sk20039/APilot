@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { apiUrl } from '../utils/apiUrl';
 
 export function useAIStream() {
   const [output, setOutput] = useState('');
@@ -11,7 +12,7 @@ export function useAIStream() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/ai/${endpoint}`, {
+      const response = await fetch(apiUrl(`/api/ai/${endpoint}`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
