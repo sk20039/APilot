@@ -1,3 +1,5 @@
+import { apiUrl } from '../utils/apiUrl';
+
 const TOKEN_KEY = 'apilot_token';
 
 export interface AuthUser {
@@ -11,7 +13,7 @@ export interface AuthResponse {
 }
 
 export async function register(email: string, password: string): Promise<AuthResponse> {
-  const response = await fetch('/api/auth/register', {
+  const response = await fetch(apiUrl('/api/auth/register'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -23,7 +25,7 @@ export async function register(email: string, password: string): Promise<AuthRes
 }
 
 export async function login(email: string, password: string): Promise<AuthResponse> {
-  const response = await fetch('/api/auth/login', {
+  const response = await fetch(apiUrl('/api/auth/login'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
